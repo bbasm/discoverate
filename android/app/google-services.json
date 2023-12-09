@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "718563665129",
+    "project_id": "gmaps-spinoff",
+    "storage_bucket": "gmaps-spinoff.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:718563665129:android:f8b0234825a000e576fc78",
+        "android_client_info": {
+          "package_name": "com.example.gmaps_spinoff"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBBQKd3msNI7iZRARh2viQ2KLRD528kTEo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
