@@ -1,34 +1,15 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:gmaps_spinoff/pages/register_page.dart';
+import 'package:gmaps_spinoff/pages/login_page.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class LoginPage extends StatefulWidget {
-  const LoginPage({super.key});
+class RegisterPage extends StatefulWidget {
+  const RegisterPage({super.key});
 
   @override
-  State<LoginPage> createState() => _LoginPageState();
+  State<RegisterPage> createState() => _RegisterPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
-  // text editing controllers
-  final _emailController = TextEditingController();
-  final _passwordController = TextEditingController();
-
-  Future signIn() async {
-    await FirebaseAuth.instance.signInWithEmailAndPassword(
-        email: _emailController.text.trim(),
-        password: _passwordController.text.trim());
-  }
-
-  @override
-  void dispose() {
-    _emailController.dispose();
-    _passwordController.dispose();
-    super.dispose();
-  }
-
+class _RegisterPageState extends State<RegisterPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -41,7 +22,10 @@ class _LoginPageState extends State<LoginPage> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              // add logo image here
+
+
+              // logo image
+              
 
               Container(
                 width: MediaQuery.of(context).size.width,
@@ -76,9 +60,9 @@ class _LoginPageState extends State<LoginPage> {
                           Expanded(
                             // welcome back text
                             child: Text(
-                              'Welcome Back!',
+                              'Lets Create an Account',
                               style: GoogleFonts.raleway(
-                                  fontSize: 40,
+                                  fontSize: 30,
                                   fontWeight: FontWeight.w500,
                                   color: Colors.black),
                             ),
@@ -90,12 +74,10 @@ class _LoginPageState extends State<LoginPage> {
                       padding: const EdgeInsets.symmetric(
                           horizontal: 17.0, vertical: 10),
                       child: TextFormField(
-                        controller: _emailController,
                         decoration: InputDecoration(
                             enabledBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(30),
                               borderSide: BorderSide(
-                                //color: Color(0xFFF1F4F8),
                                 color: Colors.grey,
                                 width: 1,
                               ),
@@ -118,13 +100,11 @@ class _LoginPageState extends State<LoginPage> {
                     Padding(
                       padding: const EdgeInsets.symmetric(
                           horizontal: 17.0, vertical: 10),
-                      child: TextFormField(
-                        controller: _passwordController,
+                      child: TextField(
                         decoration: InputDecoration(
                           enabledBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(30),
                             borderSide: BorderSide(
-                              //color: Color(0xFFF1F4F8),
                               color: Colors.grey,
                               width: 1,
                             ),
@@ -143,6 +123,7 @@ class _LoginPageState extends State<LoginPage> {
                               EdgeInsetsDirectional.fromSTEB(25, 15, 0, 15),
                           hintStyle: TextStyle(color: Colors.grey[400]),
                           suffixIcon: InkWell(
+                            onTap: () {},
                             child: Icon(Icons.visibility),
                           ),
                         ),
@@ -150,47 +131,33 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                     Padding(
                       padding:
-                          EdgeInsets.symmetric(vertical: 20, horizontal: 25),
-                      child: Row(
-                        mainAxisSize: MainAxisSize.max,
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          // LoginPage button
-                          Align(
+                          EdgeInsets.symmetric(vertical: 20, horizontal: 20),
+                      child: GestureDetector(
+                        onTap: () {},
+                        child: Container(
+                          width: 300,
+                          height: 50,
+                          decoration: BoxDecoration(
+                            color: Color.fromARGB(255, 244, 91, 105),
+                            border: Border.all(
+                              color: Colors.black,
+                              width: 1,
+                            ),
+                            borderRadius: BorderRadius.circular(30),
+                          ),
+                          child: Align(
                             alignment: Alignment.center,
-                            child: Padding(
-                              padding: EdgeInsets.symmetric(
-                                  vertical: 0, horizontal: 10),
-                              child: GestureDetector(
-                                onTap: signIn,
-                                child: Container(
-                                  width: 320,
-                                  height: 50,
-                                  decoration: BoxDecoration(
-                                    color: Color.fromARGB(255, 244, 91, 105),
-                                    border: Border.all(
-                                      color: Colors.black,
-                                      width: 1,
-                                    ),
-                                    borderRadius: BorderRadius.circular(30),
-                                  ),
-                                  child: Align(
-                                    alignment: Alignment.center,
-                                    child: Text(
-                                      'Login',
-                                      style: TextStyle(
-                                        fontFamily: 'Outfit',
-                                        color: Colors.white,
-                                        fontSize: 18,
-                                        fontWeight: FontWeight.w500,
-                                      ),
-                                    ),
-                                  ),
-                                ),
+                            child: Text(
+                              'Sign Up',
+                              style: TextStyle(
+                                fontFamily: 'Outfit',
+                                color: Colors.white,
+                                fontSize: 18,
+                                fontWeight: FontWeight.w500,
                               ),
                             ),
                           ),
-                        ],
+                        ),
                       ),
                     ),
                     Divider(
@@ -201,26 +168,31 @@ class _LoginPageState extends State<LoginPage> {
                       color: Color(0xFFE0E3E7),
                     ),
                     Padding(
-                      padding: EdgeInsets.symmetric(vertical: 30),
-                      child: GestureDetector(
-                        onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => RegisterPage()),
-                          );
-                        },
-                        child: Text(
-                          'Create an account',
-                          style: TextStyle(
-                            fontFamily: 'Lexend Deca',
-                            color: Colors.grey[800],
-                            fontSize: 16,
-                            fontWeight: FontWeight.w500,
+                      padding: const EdgeInsets.symmetric(vertical: 30),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            "Already have an account? ",
+                            style: TextStyle(fontSize: 15),
                           ),
-                        ),
+                          GestureDetector(
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => LoginPage()),
+                              );
+                            },
+                            child: Text(
+                              'Login',
+                              style:
+                                  TextStyle(color: Colors.blue, fontSize: 15),
+                            ),
+                          )
+                        ],
                       ),
-                    ),
+                    )
                   ],
                 ),
               ),
