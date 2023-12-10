@@ -1,6 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:gmaps_spinoff/utilities/similar_places_card.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:geolocator/geolocator.dart';
@@ -121,15 +123,26 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsets.only(left: 90),
-                  child: IconButton(
-                      onPressed: () {
-                        FirebaseAuth.instance.signOut();
-                      },
-                      icon: Icon(
-                        Icons.logout,
-                        size: 30,
-                      )),
+                  padding: const EdgeInsets.only(left: 100),
+                  child: ElevatedButton(
+                    onPressed: () {
+                      FirebaseAuth.instance.signOut();
+                    },
+                    child: Icon(Icons.logout, color: Colors.white),
+                    style: ButtonStyle(
+                      shape: MaterialStateProperty.all(CircleBorder()),
+                      padding: MaterialStateProperty.all(EdgeInsets.all(12)),
+                      backgroundColor: MaterialStateProperty.all(
+                        Color.fromARGB(255, 76, 121, 9),
+                      ), // <-- Button color
+                      overlayColor:
+                          MaterialStateProperty.resolveWith<Color?>((states) {
+                        if (states.contains(MaterialState.pressed))
+                          return Color.fromARGB(
+                              255, 115, 162, 45); // <-- Splash color
+                      }),
+                    ),
+                  ),
                 ),
               ],
             ),
@@ -202,42 +215,59 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
 
-            if (!searched)
-              Expanded(
-                child: ListView.builder(
-                  itemCount: _suggestions.length,
-                  itemBuilder: (context, index) {
-                    return ListTile(
-                      title: Text(_suggestions[index]),
-                      onTap: () {
-                        _placeController.text = _suggestions[index];
-                        setState(() {
-                          _suggestions = [];
-                        });
-                      },
-                    );
-                  },
-                ),
-              ),
+            SimilarPlacesCard(
+              name: 'Skibidy toilet',
+              rating: '1.2',
+            ),
+            SimilarPlacesCard(
+              name: 'Nizamia Andalusia',
+              rating: '1.2',
+            ),
+            SimilarPlacesCard(
+              name: 'Nizamia Andalusia',
+              rating: '1.2',
+            ),
+            SimilarPlacesCard(
+              name: 'Nizamia Andalusia',
+              rating: '1.2',
+            ),
 
-            if (searched)
-              Padding(
-                padding: const EdgeInsets.only(top: 20),
-                child: Container(
-                  height: 580,
-                  child: ListView.builder(
-                    itemCount: _similarPlaces.length,
-                    itemBuilder: (context, index) {
-                      return ListTile(
-                        title: Text(_similarPlaces[index]['name']),
-                        subtitle:
-                            Text('Rating: ${_similarPlaces[index]['rating']}'),
-                        // Add onTap functionality if needed for similar places
-                      );
-                    },
-                  ),
-                ),
-              ),
+            // if (!searched)
+            //   Expanded(
+            //     child: ListView.builder(
+            //       itemCount: _suggestions.length,
+            //       itemBuilder: (context, index) {
+            //         return ListTile(
+            //           title: Text(_suggestions[index]),
+            //           onTap: () {
+            //             _placeController.text = _suggestions[index];
+            //             setState(() {
+            //               _suggestions = [];
+            //             });
+            //           },
+            //         );
+            //       },
+            //     ),
+            //   ),
+
+            // if (searched)
+            //   Padding(
+            //     padding: const EdgeInsets.only(top: 20),
+            //     child: Container(
+            //       height: 580,
+            //       child: ListView.builder(
+            //         itemCount: _similarPlaces.length,
+            //         itemBuilder: (context, index) {
+            //           return ListTile(
+            //             title: Text(_similarPlaces[index]['name']),
+            //             subtitle:
+            //                 Text('Rating: ${_similarPlaces[index]['rating']}'),
+            //             // Add onTap functionality if needed for similar places
+            //           );
+            //         },
+            //       ),
+            //     ),
+            //   ),
           ],
         ),
       ),

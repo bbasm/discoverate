@@ -45,7 +45,7 @@ class _RegisterPageState extends State<RegisterPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromARGB(255, 253, 248, 249),
+      backgroundColor: Color.fromARGB(255, 252, 249, 235),
       body: Align(
         alignment: AlignmentDirectional(0, 1),
         child: SingleChildScrollView(
@@ -55,9 +55,12 @@ class _RegisterPageState extends State<RegisterPage> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               // add logo image here
-              Image.asset(
-                'lib/images/logo1.jpeg',
-                width: 85,
+              Padding(
+                padding: const EdgeInsets.only(bottom: 50),
+                child: Image.asset(
+                  'lib/images/logo.png',
+                  width: 200,
+                ),
               ),
 
               Container(
@@ -217,7 +220,7 @@ class _RegisterPageState extends State<RegisterPage> {
                                   width: 320,
                                   height: 50,
                                   decoration: BoxDecoration(
-                                    color: Color.fromARGB(255, 244, 91, 105),
+                                    color: Color.fromARGB(255, 76, 121, 9),
                                     border: Border.all(
                                       color: Colors.black,
                                       width: 1,
