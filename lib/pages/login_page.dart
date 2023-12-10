@@ -150,9 +150,7 @@ class _LoginPageState extends State<LoginPage> {
                           contentPadding:
                               EdgeInsetsDirectional.fromSTEB(25, 15, 0, 15),
                           hintStyle: TextStyle(color: Colors.grey[400]),
-                          suffixIcon: InkWell(
-                            child: Icon(Icons.visibility),
-                          ),
+                          
                         ),
                       ),
                     ),

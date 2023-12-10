@@ -45,7 +45,7 @@ class SimilarPlacesCard extends StatelessWidget {
                     Row(
                       children: [
                         Text(
-                          "Rating is " + rating,
+                          "Rating is " + rating.toString(),
                           style: GoogleFonts.raleway(
                             color: Color.fromARGB(255, 76, 121, 9),
                             fontSize: 14,

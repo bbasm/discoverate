@@ -162,9 +162,6 @@ class _RegisterPageState extends State<RegisterPage> {
                           contentPadding:
                               EdgeInsetsDirectional.fromSTEB(25, 15, 0, 15),
                           hintStyle: TextStyle(color: Colors.grey[400]),
-                          suffixIcon: InkWell(
-                            child: Icon(Icons.visibility),
-                          ),
                         ),
                       ),
                     ),
@@ -230,7 +227,7 @@ class _RegisterPageState extends State<RegisterPage> {
                                   child: Align(
                                     alignment: Alignment.center,
                                     child: Text(
-                                      'Login',
+                                      'Register',
                                       style: TextStyle(
                                         fontFamily: 'Outfit',
                                         color: Colors.white,

@@ -215,59 +215,41 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
 
-            SimilarPlacesCard(
-              name: 'Skibidy toilet',
-              rating: '1.2',
-            ),
-            SimilarPlacesCard(
-              name: 'Nizamia Andalusia',
-              rating: '1.2',
-            ),
-            SimilarPlacesCard(
-              name: 'Nizamia Andalusia',
-              rating: '1.2',
-            ),
-            SimilarPlacesCard(
-              name: 'Nizamia Andalusia',
-              rating: '1.2',
-            ),
+            if (!searched)
+              Expanded(
+                child: ListView.builder(
+                  itemCount: _suggestions.length,
+                  itemBuilder: (context, index) {
+                    return ListTile(
+                      title: Text(_suggestions[index]),
+                      onTap: () {
+                        _placeController.text = _suggestions[index];
+                        setState(() {
+                          _suggestions = [];
+                        });
+                      },
+                    );
+                  },
+                ),
+              ),
 
-            // if (!searched)
-            //   Expanded(
-            //     child: ListView.builder(
-            //       itemCount: _suggestions.length,
-            //       itemBuilder: (context, index) {
-            //         return ListTile(
-            //           title: Text(_suggestions[index]),
-            //           onTap: () {
-            //             _placeController.text = _suggestions[index];
-            //             setState(() {
-            //               _suggestions = [];
-            //             });
-            //           },
-            //         );
-            //       },
-            //     ),
-            //   ),
-
-            // if (searched)
-            //   Padding(
-            //     padding: const EdgeInsets.only(top: 20),
-            //     child: Container(
-            //       height: 580,
-            //       child: ListView.builder(
-            //         itemCount: _similarPlaces.length,
-            //         itemBuilder: (context, index) {
-            //           return ListTile(
-            //             title: Text(_similarPlaces[index]['name']),
-            //             subtitle:
-            //                 Text('Rating: ${_similarPlaces[index]['rating']}'),
-            //             // Add onTap functionality if needed for similar places
-            //           );
-            //         },
-            //       ),
-            //     ),
-            //   ),
+            if (searched)
+              Padding(
+                padding: const EdgeInsets.only(top: 20),
+                child: Container(
+                  height: 580,
+                  child: ListView.builder(
+                    itemCount: _similarPlaces.length,
+                    itemBuilder: (context, index) {
+                      return SimilarPlacesCard(
+                        name: _similarPlaces[index]['name'],
+                        rating: _similarPlaces[index]['rating'].toString(),
+                        // Add onTap functionality if needed for similar places
+                      );
+                    },
+                  ),
+                ),
+              ),
           ],
         ),
       ),
