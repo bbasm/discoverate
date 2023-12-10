@@ -33,7 +33,7 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromARGB(255, 253, 248, 249),
+      backgroundColor: Color.fromARGB(255, 252, 249, 235),
       body: Align(
         alignment: AlignmentDirectional(0, 1),
         child: SingleChildScrollView(
@@ -43,6 +43,13 @@ class _LoginPageState extends State<LoginPage> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               // add logo image here
+              Padding(
+                padding: const EdgeInsets.only(bottom: 100),
+                child: Image.asset(
+                  'lib/images/logo11.png',
+                  width: 200,
+                ),
+              ),
 
               Container(
                 width: MediaQuery.of(context).size.width,
@@ -168,7 +175,7 @@ class _LoginPageState extends State<LoginPage> {
                                   width: 320,
                                   height: 50,
                                   decoration: BoxDecoration(
-                                    color: Color.fromARGB(255, 244, 91, 105),
+                                    color: Color.fromARGB(255, 76, 121, 9),
                                     border: Border.all(
                                       color: Colors.black,
                                       width: 1,

@@ -27,13 +27,15 @@ class _RegisterPageState extends State<RegisterPage> {
 
   Future signUp() async {
     if (passwordConfirmed()) {
-    await FirebaseAuth.instance.createUserWithEmailAndPassword(
-        email: _emailController.text.trim(),
-        password: _passwordController.text.trim());
-  }}
+      await FirebaseAuth.instance.createUserWithEmailAndPassword(
+          email: _emailController.text.trim(),
+          password: _passwordController.text.trim());
+    }
+  }
 
   bool passwordConfirmed() {
-    if (_passwordController.text.trim() == _confirmpasswordController.text.trim()) {
+    if (_passwordController.text.trim() ==
+        _confirmpasswordController.text.trim()) {
       return true;
     } else {
       return false;
@@ -53,6 +55,10 @@ class _RegisterPageState extends State<RegisterPage> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               // add logo image here
+              Image.asset(
+                'lib/images/logo1.jpeg',
+                width: 85,
+              ),
 
               Container(
                 width: MediaQuery.of(context).size.width,
