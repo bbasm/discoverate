@@ -11,8 +11,21 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   // text editing controllers
-  final emailController = TextEditingController();
-  final passwordController = TextEditingController();
+  final _emailController = TextEditingController();
+  final _passwordController = TextEditingController();
+
+  Future signIn() async {
+    await FirebaseAuth.instance.signInWithEmailAndPassword(
+        email: _emailController.text.trim(),
+        password: _passwordController.text.trim());
+  }
+
+  @override
+  void dispose() {
+    _emailController.dispose();
+    _passwordController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -75,6 +88,7 @@ class _LoginPageState extends State<LoginPage> {
                       padding: const EdgeInsets.symmetric(
                           horizontal: 17.0, vertical: 10),
                       child: TextFormField(
+                        controller: _emailController,
                         decoration: InputDecoration(
                             enabledBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(30),
@@ -103,6 +117,7 @@ class _LoginPageState extends State<LoginPage> {
                       padding: const EdgeInsets.symmetric(
                           horizontal: 17.0, vertical: 10),
                       child: TextFormField(
+                        controller: _passwordController,
                         decoration: InputDecoration(
                           enabledBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(30),
@@ -145,6 +160,7 @@ class _LoginPageState extends State<LoginPage> {
                               padding: EdgeInsets.symmetric(
                                   vertical: 0, horizontal: 10),
                               child: GestureDetector(
+                                onTap: signIn,
                                 child: Container(
                                   width: 320,
                                   height: 50,
