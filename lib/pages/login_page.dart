@@ -16,6 +16,13 @@ class _LoginPageState extends State<LoginPage> {
   // text editing controllers
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
+  bool _obscureText = false;
+
+  void _toggle() {
+    setState(() {
+      _obscureText = !_obscureText;
+    });
+  }
 
   Future signIn() async {
     await FirebaseAuth.instance.signInWithEmailAndPassword(
@@ -127,6 +134,7 @@ class _LoginPageState extends State<LoginPage> {
                       padding: const EdgeInsets.symmetric(
                           horizontal: 17.0, vertical: 10),
                       child: TextFormField(
+                        obscureText: !_obscureText,
                         controller: _passwordController,
                         decoration: InputDecoration(
                           enabledBorder: OutlineInputBorder(
@@ -150,7 +158,14 @@ class _LoginPageState extends State<LoginPage> {
                           contentPadding:
                               EdgeInsetsDirectional.fromSTEB(25, 15, 0, 15),
                           hintStyle: TextStyle(color: Colors.grey[400]),
-                          
+                          suffixIcon: InkWell(
+                            onTap: _toggle,
+                            child: Icon(
+                              _obscureText
+                                  ? Icons.visibility
+                                  : Icons.visibility_off,
+                            ),
+                          ),
                         ),
                       ),
                     ),

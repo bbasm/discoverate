@@ -16,6 +16,7 @@ class _RegisterPageState extends State<RegisterPage> {
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
   final _confirmpasswordController = TextEditingController();
+  bool _obscureText = false;
 
   @override
   void dispose() {
@@ -31,6 +32,12 @@ class _RegisterPageState extends State<RegisterPage> {
           email: _emailController.text.trim(),
           password: _passwordController.text.trim());
     }
+  }
+
+    void _toggle() {
+    setState(() {
+      _obscureText = !_obscureText;
+    });
   }
 
   bool passwordConfirmed() {
@@ -139,6 +146,7 @@ class _RegisterPageState extends State<RegisterPage> {
                       padding: const EdgeInsets.symmetric(
                           horizontal: 17.0, vertical: 10),
                       child: TextFormField(
+                        obscureText: !_obscureText,
                         controller: _passwordController,
                         decoration: InputDecoration(
                           enabledBorder: OutlineInputBorder(
@@ -159,9 +167,18 @@ class _RegisterPageState extends State<RegisterPage> {
                           fillColor: Colors.white,
                           filled: true,
                           hintText: 'Password',
+                          
                           contentPadding:
                               EdgeInsetsDirectional.fromSTEB(25, 15, 0, 15),
                           hintStyle: TextStyle(color: Colors.grey[400]),
+                          suffixIcon: InkWell(
+                              onTap: _toggle,
+                              child: Icon(
+                                _obscureText
+                                    ? Icons.visibility
+                                    : Icons.visibility_off,
+                              ),
+                            ),
                         ),
                       ),
                     ),
@@ -169,6 +186,7 @@ class _RegisterPageState extends State<RegisterPage> {
                       padding: const EdgeInsets.symmetric(
                           horizontal: 17.0, vertical: 10),
                       child: TextFormField(
+                        obscureText: !_obscureText,
                         controller: _confirmpasswordController,
                         decoration: InputDecoration(
                           enabledBorder: OutlineInputBorder(
@@ -193,8 +211,13 @@ class _RegisterPageState extends State<RegisterPage> {
                               EdgeInsetsDirectional.fromSTEB(25, 15, 0, 15),
                           hintStyle: TextStyle(color: Colors.grey[400]),
                           suffixIcon: InkWell(
-                            child: Icon(Icons.visibility),
-                          ),
+                              onTap: _toggle,
+                              child: Icon(
+                                _obscureText
+                                    ? Icons.visibility
+                                    : Icons.visibility_off,
+                              ),
+                            ),
                         ),
                       ),
                     ),
